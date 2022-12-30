@@ -22,25 +22,25 @@ namespace DotNetCoreSqlDb.Models
         {
             // TODO: Move this logic into a static constructor so that it executes once
             
-            var connection = (Microsoft.Data.SqlClient.SqlConnection)Database.GetDbConnection();
+            //var connection = (Microsoft.Data.SqlClient.SqlConnection)Database.GetDbConnection();
 
-            // mechansim for providing database access for local traffic (without managed identity) 
-            // https://briancaos.wordpress.com/2022/09/06/c-sql-connection-using-azure-managed-identity/
-            // A User Id value means we are running locally - use database using username/password. Connect the old fashioned way
-            if (connection.ConnectionString.Contains("User ID"))
-                return;
+            //// mechansim for providing database access for local traffic (without managed identity) 
+            //// https://briancaos.wordpress.com/2022/09/06/c-sql-connection-using-azure-managed-identity/
+            //// A User Id value means we are running locally - use database using username/password. Connect the old fashioned way
+            //if (connection.ConnectionString.Contains("User ID"))
+            //    return;
 
-            // Provides a default TokenCredential authentication flow for applications that will be deployed to Azure.
-            // https://learn.microsoft.com/en-us/dotnet/api/azure.identity.defaultazurecredential?view=azure-dotnet
-            var credential = new DefaultAzureCredential();
+            //// Provides a default TokenCredential authentication flow for applications that will be deployed to Azure.
+            //// https://learn.microsoft.com/en-us/dotnet/api/azure.identity.defaultazurecredential?view=azure-dotnet
+            //var credential = new DefaultAzureCredential();
 
-            // Get token from AAD
-            var token = credential
-                    .GetToken(new Azure.Core.TokenRequestContext(
-                        new[] { "https://database.windows.net/.default" }));
+            //// Get token from AAD
+            //var token = credential
+            //        .GetToken(new Azure.Core.TokenRequestContext(
+            //            new[] { "https://database.windows.net/.default" }));
 
-            // Add token to the database connection
-            connection.AccessToken = token.Token;
+            //// Add token to the database connection
+            //connection.AccessToken = token.Token;
         }
        
         
