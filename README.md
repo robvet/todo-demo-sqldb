@@ -1,4 +1,4 @@
-# to-demo-sqldb
+# ToDo-demo-sqldb
 Simple .net Core Web App with a SqlDB Database
 
 Ideal for quick customer demos
